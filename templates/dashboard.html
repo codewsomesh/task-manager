@@ -1,0 +1,140 @@
+{% extends "base.html" %} {% block title %}Dashboard — TaskManager{% endblock %}
+{% block content %}
+<div class="dashboard">
+  <!-- Analytics Section -->
+  <section class="analytics-section">
+    <h2>📊 Analytics Overview</h2>
+    <div class="analytics-grid" id="analytics-grid">
+      <div class="stat-card total">
+        <div class="stat-value" id="stat-total">—</div>
+        <div class="stat-label">Total Tasks</div>
+      </div>
+      <div class="stat-card completed">
+        <div class="stat-value" id="stat-completed">—</div>
+        <div class="stat-label">Completed</div>
+      </div>
+      <div class="stat-card progress">
+        <div class="stat-value" id="stat-progress">—</div>
+        <div class="stat-label">In Progress</div>
+      </div>
+      <div class="stat-card pending">
+        <div class="stat-value" id="stat-pending">—</div>
+        <div class="stat-label">Pending</div>
+      </div>
+    </div>
+    <div class="progress-bar-container">
+      <label>Completion Rate: <span id="completion-pct">0</span>%</label>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+      </div>
+    </div>
+    <div class="priority-breakdown" id="priority-breakdown"></div>
+  </section>
+
+  <!-- Add Task Section -->
+  <section class="add-task-section">
+    <h2>➕ Add New Task</h2>
+    <div class="task-form-card">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Title *</label>
+          <input type="text" id="task-title" placeholder="Task title..." />
+        </div>
+        <div class="form-group">
+          <label>Priority</label>
+          <select id="task-priority">
+            <option value="low">🟢 Low</option>
+            <option value="medium" selected>🟡 Medium</option>
+            <option value="high">🔴 High</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Status</label>
+          <select id="task-status">
+            <option value="pending">⏳ Pending</option>
+            <option value="in_progress">🔄 In Progress</option>
+            <option value="completed">✅ Completed</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea
+          id="task-description"
+          placeholder="Task description (optional)..."
+          rows="2"
+        ></textarea>
+      </div>
+      <button class="btn btn-primary" onclick="addTask()">Add Task</button>
+    </div>
+  </section>
+
+  <!-- Real-time Notification Banner -->
+  <div id="notification-banner" class="notification-banner hidden"></div>
+
+  <!-- Task Filters -->
+  <section class="tasks-section">
+    <div class="tasks-header">
+      <h2>📋 My Tasks</h2>
+      <div class="filters">
+        <select id="filter-status" onchange="loadTasks()">
+          <option value="">All Statuses</option>
+          <option value="pending">Pending</option>
+          <option value="in_progress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+        <select id="filter-priority" onchange="loadTasks()">
+          <option value="">All Priorities</option>
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+      </div>
+    </div>
+    <div id="tasks-list" class="tasks-list">
+      <div class="loading">Loading tasks...</div>
+    </div>
+  </section>
+</div>
+
+<!-- Edit Task Modal -->
+<div id="edit-modal" class="modal hidden">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>✏️ Edit Task</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" id="edit-title" />
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <textarea id="edit-description" rows="3"></textarea>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Priority</label>
+        <select id="edit-priority">
+          <option value="low">🟢 Low</option>
+          <option value="medium">🟡 Medium</option>
+          <option value="high">🔴 High</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Status</label>
+        <select id="edit-status">
+          <option value="pending">⏳ Pending</option>
+          <option value="in_progress">🔄 In Progress</option>
+          <option value="completed">✅ Completed</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveEdit()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
