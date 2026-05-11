@@ -97,16 +97,18 @@ Open **http://localhost:5000** in your browser.
 
 ## Project Structure
 
+```
 task_manager/
-├── app.py # Entry point
-├── config.py # Config
-├── extensions.py # Flask extensions
-├── websockets.py # SocketIO events
-├── schema.sql # DB schema
+├── app.py              # Entry point
+├── config.py           # Config
+├── extensions.py       # Flask extensions
+├── websockets.py       # SocketIO events
+├── schema.sql          # DB schema
 ├── requirements.txt
-├── auth/ # Auth blueprint
-├── api/ # REST API
-├── main/ # Main routes
-├── models/ # DB models
-├── static/ # CSS & JS
-└── templates/ # HTML templates
+├── auth/               # Auth blueprint
+├── api/                # REST API
+├── main/               # Main routes
+├── models/             # DB models
+├── static/             # CSS & JS
+└── templates/          # HTML templates
+```
