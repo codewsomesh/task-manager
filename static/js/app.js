@@ -24,6 +24,7 @@ socket.on("task_updated", (task) => {
 socket.on("task_deleted", (data) => {
   showNotification(`🗑️ Task removed.`);
   loadTasks();
+
   loadAnalytics();
 });
 

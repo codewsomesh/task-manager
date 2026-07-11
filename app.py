@@ -33,7 +33,7 @@ def create_app(config_class=Config):
 
     return app, socketio
 
+app, socketio = create_app()
 
 if __name__ == "__main__":
-    app, sio = create_app()
-    sio.run(app, debug=True, host="0.0.0.0", port=5000)
+    socketio.run(app, debug=False, host="0.0.0.0", port=5000)
