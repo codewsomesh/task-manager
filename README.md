@@ -2,6 +2,8 @@
 
 A task management web app I built using Flask and PostgreSQL, with real-time updates via WebSockets and basic analytics using Pandas and NumPy.
 
+🔗 **Live Demo: https://task-manager-sbdk.onrender.com**
+
 ## What it does
 
 - Register and log in to your own account
@@ -22,6 +24,8 @@ A task management web app I built using Flask and PostgreSQL, with real-time upd
 | Frontend  | HTML, CSS, Vanilla JS       |
 
 ## Getting Started
+
+### Local Setup
 
 ### 1. Clone the repo
 
@@ -60,8 +64,10 @@ psql -U postgres -f schema.sql
 
 ### 5. Create a `.env` file
 
+```
 SECRET_KEY=your-secret-key
 DATABASE_URL=postgresql://postgres:password@localhost:5432/task_manager_db
+```
 
 ### 6. Run it
 
@@ -70,6 +76,16 @@ python app.py
 ```
 
 Open **http://localhost:5000** in your browser.
+
+---
+
+### Deployment (Render)
+
+This app is deployed on Render with a managed PostgreSQL database.
+
+- Web Service: Python, Gunicorn + Gevent
+- Database: Render PostgreSQL
+- Environment variables set via Render dashboard
 
 ## API Endpoints
 
