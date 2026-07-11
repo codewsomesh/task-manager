@@ -13,7 +13,7 @@ def create_app(config_class=Config):
     db.init_app(app)
     bcrypt.init_app(app)
     login_manager.init_app(app)
-    socketio.init_app(app, cors_allowed_origins="*", async_mode="eventlet")
+    socketio.init_app(app, cors_allowed_origins="*", async_mode="gevent")
 
     from auth.routes import auth_bp
     from api.tasks import tasks_bp

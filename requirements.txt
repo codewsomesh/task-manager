@@ -7,5 +7,6 @@ psycopg2-binary
 pandas
 numpy
 python-dotenv
-eventlet
+gevent
+gevent-websocket
 gunicorn
